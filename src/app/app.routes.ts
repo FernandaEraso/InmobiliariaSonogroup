@@ -2,13 +2,13 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.routes').then((m) => m.AUTH_ROUTES),
   },
   {
-    path: 'login',
-    loadComponent: () => import('./modules/auth/auth.component').then((m) => m.AuthComponent),
+    path: 'auth/login',
+    loadComponent: () =>
+      import('./modules/auth/components/login/auth.component').then((m) => m.AuthComponent),
     children: [],
   },
   {
@@ -16,5 +16,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./modules/dashboard/dashboard.component').then((m) => m.DashboardComponent),
   },
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: 'auth/login' },
 ];

@@ -1,12 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-auth',
-  imports: [ButtonModule, CardModule, PasswordModule, ReactiveFormsModule],
+  imports: [ButtonModule, CardModule, PasswordModule, ReactiveFormsModule, RouterLink],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
