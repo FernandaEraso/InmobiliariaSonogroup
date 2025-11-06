@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { PasswordModule } from 'primeng/password';
@@ -14,6 +14,7 @@ import { PasswordModule } from 'primeng/password';
 export class AuthComponent implements OnInit {
   //*@Inject
   private _fb = inject(FormBuilder);
+  private _router = inject(Router);
 
   //*Formulario
   form: FormGroup;
@@ -32,6 +33,14 @@ export class AuthComponent implements OnInit {
     if (this.form.invalid) return;
     this.loading = true;
     const { email, password } = this.form.value;
-    console.log(email, password);
+    
+    // Simular autenticación (aquí deberías llamar a tu servicio de autenticación)
+    setTimeout(() => {
+      console.log('Login exitoso:', email, password);
+      this.loading = false;
+      
+      // Redirigir al dashboard después del login exitoso
+      this._router.navigate(['/dashboard']);
+    }, 1000);
   }
 }

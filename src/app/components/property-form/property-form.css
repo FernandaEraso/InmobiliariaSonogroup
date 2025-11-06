@@ -51,7 +51,7 @@
   color: #2E3A59 !important;
 }
 .mat-form-field-infix {
-  min-height: 36px !important;
+  min-height: 30px !important;
 }
 input, textarea, select, .mat-input-element {
   border-radius: 6px;

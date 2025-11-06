@@ -1,7 +1,7 @@
 <div class="form-container">
   <header class="form-header">
     <h2>Registrar Nueva Propiedad</h2>
-    <img src="./assets/logo.jpg" class="logo" alt="Logo" />
+    <img src="./assets/logo.jpg" class="logo" alt=" " />
   </header>
 
   <!-- Información básica -->
@@ -114,6 +114,8 @@
   <!-- Fotos -->
   <section class="section">
     <label>Fotos de la Propiedad (máx {{ maxFotos }})</label>
+    <br>
+    <br>
     <input type="file" accept="image/*" multiple [attr.max]="maxFotos" (change)="onFotoSubida($event)" />
     <div class="thumbnails">
       <div class="thumbnail" *ngFor="let foto of datos.fotos; let idx = index">

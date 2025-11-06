@@ -12,15 +12,13 @@ export const routes: Routes = [
     children: [],
   },
   {
-    path: 'dashboard',
-    loadComponent: () =>
-      import('./modules/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+    path: 'registrar-propiedad',
+    loadComponent: () => import('./components/property-form/property-form.component').then(m => m.PropertyFormComponent)
   },
-  // <<<<<< NUEVA RUTA aquí >>>>>
   {
-  path: 'registrar-propiedad',
-  loadComponent: () => import('./components/property-form/property-form.component').then(m => m.PropertyFormComponent)
-},
+    path: 'dashboard',
+    loadComponent: () => import('./components/dashboard-component/dashboard.component').then(m => m.DashboardComponent)
+  },
   { path: '**', redirectTo: 'auth/login' },
 ];
 
