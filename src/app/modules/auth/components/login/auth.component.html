@@ -1,0 +1,35 @@
+<div class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4">
+        <p-card>
+          <h3 class="text-center mb-4 text-primary fw-semibold">Iniciar sesión</h3>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="email" class="form-label fw-semibold">Correo electrónico</label>
+              <input id="email" type="email" pInputText class="form-control form-control-lg" formControlName="email"
+                placeholder="usuario@correo.com" />
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label fw-semibold">Contraseña</label><br>
+              <p-password id="password" formControlName="password" [feedback]="false" toggleMask="true"
+                inputStyleClass="form-control form-control-lg" placeholder="********" class="w-100"></p-password>
+            </div>
+
+            <button pButton type="submit" label="Ingresar" [loading]="loading" [disabled]="form.invalid || loading"
+              class="btn btn-primary w-100 py-2 rounded-pill mt-3"></button>
+          </form>
+
+          <div class="text-center mt-3">
+            <span class="text-muted">¿No tienes cuenta?</span>
+            <a routerLink="/auth/register" class="ms-1 text-primary text-decoration-none fw-semibold">
+              Regístrate
+            </a>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
