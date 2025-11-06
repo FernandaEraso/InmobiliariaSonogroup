@@ -2,19 +2,19 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.routes').then((m) => m.AUTH_ROUTES),
-  },
-  {
-    path: 'auth/login',
+    path: '',
     loadComponent: () =>
-      import('./modules/auth/components/login/auth.component').then((m) => m.AuthComponent),
-    children: [],
+      import('./modules/dashboard/pages/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: 'dashboard',
-    loadComponent: () =>
-      import('./modules/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.routes').then((m) => m.DASHBOARD_ROUTES),
   },
-  { path: '**', redirectTo: 'auth/login' },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.routes').then((m) => m.AUTH_ROUTES),
+  },
+  { path: '**', redirectTo: '' },
 ];

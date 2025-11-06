@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>Bienvenido a <span>Inmobiliaria Sonogroup</span></h2>
+    <p>Tu aliado en la búsqueda del hogar perfecto. Encuentra casas, apartamentos y fincas en Pasto y todo Nariño.</p>
+    <button class="btn">Ver Propiedades</button>
+  </div>
+</section>
+
+<section class="propiedades">
+  <h3>Inmuebles destacados</h3>
+
+  <div class="grid">
+    <div class="card" *ngFor="let p of propiedades">
+      <img [src]="p.imagen" [alt]="p.titulo">
+      <div class="info">
+        <h4>{{ p.titulo }}</h4>
+        <p>{{ p.descripcion }}</p>
+        <span class="precio">{{ p.precio }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Inmobiliaria Sonogroup — Todos los derechos reservados</p>
+</footer>
