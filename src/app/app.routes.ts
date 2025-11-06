@@ -16,5 +16,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./modules/dashboard/dashboard.component').then((m) => m.DashboardComponent),
   },
+  // <<<<<< NUEVA RUTA aquí >>>>>
+  {
+  path: 'registrar-propiedad',
+  loadComponent: () => import('./components/property-form/property-form.component').then(m => m.PropertyFormComponent)
+},
   { path: '**', redirectTo: 'auth/login' },
 ];
+

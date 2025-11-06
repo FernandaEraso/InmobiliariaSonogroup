@@ -1,0 +1,140 @@
+<div class="form-container">
+  <header class="form-header">
+    <h2>Registrar Nueva Propiedad</h2>
+    <img src="./assets/logo.jpg" class="logo" alt="Logo" />
+  </header>
+
+  <!-- Información básica -->
+  <section class="section">
+    <div class="fields-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Título de la Propiedad</mat-label>
+        <input matInput [(ngModel)]="datos.titulo" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de Inmueble</mat-label>
+        <mat-select [(ngModel)]="datos.tipoInmueble" (selectionChange)="onTipoInmuebleChange()">
+          <mat-option *ngFor="let tipo of (tipoInmueble | keyvalue)" [value]="tipo.value">
+            {{ tipo.value | titlecase }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de Operación</mat-label>
+        <mat-select [(ngModel)]="datos.tipoOperacion">
+          <mat-option *ngFor="let op of (tipoOperacion | keyvalue)" [value]="op.value">
+            {{ op.value | titlecase }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Estado de Conservación</mat-label>
+        <mat-select [(ngModel)]="datos.estadoConservacion">
+          <mat-option *ngFor="let ec of (estadoConservacion | keyvalue)" [value]="ec.value">
+            {{ ec.value | titlecase }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="fields-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Precio</mat-label>
+        <input matInput type="number" [(ngModel)]="datos.valor" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Moneda</mat-label>
+        <mat-select [(ngModel)]="datos.moneda">
+          <mat-option *ngFor="let moneda of monedas" [value]="moneda">{{ moneda }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- Ubicación -->
+  <section class="section">
+    <div class="fields-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Dirección</mat-label>
+        <input matInput [(ngModel)]="datos.direccion" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ciudad</mat-label>
+        <input matInput [(ngModel)]="datos.ciudad" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Barrio / Zona</mat-label>
+        <input matInput [(ngModel)]="datos.barrio" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Departamento</mat-label>
+        <input matInput [(ngModel)]="datos.departamento" />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- Características Comunes -->
+  <section class="section">
+    <div class="fields-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Dormitorios</mat-label>
+        <input matInput type="number" [(ngModel)]="datos.dormitorios" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Baños</mat-label>
+        <input matInput type="number" [(ngModel)]="datos.banos" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Superficie (m²)</mat-label>
+        <input matInput type="number" [(ngModel)]="datos.superficie" />
+      </mat-form-field>
+    </div>
+    <!-- Campos dinámicos según el tipo de inmueble pueden ir aquí -->
+  </section>
+
+  <!-- Características -->
+  <section class="section">
+    <div class="checkbox-group">
+      <label>Características destacadas:</label>
+      <mat-checkbox *ngFor="let c of caracteristicasDisponibles" [(ngModel)]="datos.caracteristicas[c]">
+        {{ c | titlecase }}
+      </mat-checkbox>
+    </div>
+  </section>
+
+  <!-- Servicios públicos -->
+  <section class="section">
+    <div class="checkbox-group">
+      <label>Servicios Públicos:</label>
+      <mat-checkbox *ngFor="let s of serviciosDisponibles" [(ngModel)]="datos.serviciosPublicos[s]">
+        {{ s | titlecase }}
+      </mat-checkbox>
+    </div>
+  </section>
+
+  <!-- Fotos -->
+  <section class="section">
+    <label>Fotos de la Propiedad (máx {{ maxFotos }})</label>
+    <input type="file" accept="image/*" multiple [attr.max]="maxFotos" (change)="onFotoSubida($event)" />
+    <div class="thumbnails">
+      <div class="thumbnail" *ngFor="let foto of datos.fotos; let idx = index">
+        <!-- Eliminado el pipe filePreview -->
+        <img [src]="foto" />
+        <button type="button" (click)="quitarFoto(idx)">X</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Descripción -->
+  <section class="section">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción general</mat-label>
+      <textarea matInput rows="5" [(ngModel)]="datos.descripcion"></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- Botones -->
+  <section class="actions">
+    <button mat-stroked-button color="primary" (click)="onGuardarBorrador()">Guardar como Borrador</button>
+    <button mat-flat-button color="accent" (click)="onPublicar()">Publicar Propiedad</button>
+  </section>
+</div>
